@@ -1,0 +1,37 @@
+#!/bin/bash
+cd
+while [ 1 ]
+do
+clear
+
+printf "Please enter a year: "
+read year
+until [[ $year == [0-9]* ]]; do
+printf "Invalid choice. Please try again.\nPlease enter a year: ";
+read year
+done
+
+printf "$year"
+
+let a=$year%4
+let b=$year%100
+let c=$year%400
+
+
+if [ $c == 0 ]; then
+printf " is a leap year!"
+elif [ $a == 0 ] && [ $b != 0 ];then
+printf " is a leap year!"
+else
+printf " is not a leap year."
+fi
+
+
+printf "\nWould you like to continute? Y/N\n"
+read choice
+case ${choice} in
+Y|y) ;;
+N|n) clear; printf "Goodbye"; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "\n"; break;;
+*) clear; printf "Invalid input, exiting program"; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "\n"; break;;
+esac
+done

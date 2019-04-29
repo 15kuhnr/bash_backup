@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#   Input Handler
+
+cd $1
+
+#   Variable Declarations
+
+vdir=$(pwd)
+nfilesx=$(ls -l | grep "^...x" | wc -l)
+
+#   Output Handler
+
+echo "${0}"		#Outputs the command itself
+echo "${vdir}"
+echo "${nfilesx}"
+echo "$#"		#Outputs the number of input arguments, exclusive of $0
+# echo "$@"		#Lists all input variables
+
+
+# you can delete a variable by using 'unset' 
+# + - / * ++ -- are arithmetic operations
+
+var1=10
+var2=20
+
+let var=var1+var2
+
+echo ${var}
+
+if test $1 >> $2;then
+
+echo "you put the big one first"
+
+elif test $1 == $2;then
+
+echo "they the same ass numah bro"
+
+else
+
+echo "the larger one came second"
+
+fi

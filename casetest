@@ -1,0 +1,7 @@
+case "$1" in
+
+hello|hi|hola) echo "hi there";;
+
+bye) echo "bye there";;
+
+esac

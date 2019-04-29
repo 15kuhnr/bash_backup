@@ -1,0 +1,46 @@
+Lecture 3
+
+Basics of the Linux/UNIX filesystem
+
+There are several different Shells available to Linux users. Primarily you are faced with Bash (Bourne Again Shell)
+
+Lecture 7?
+
+creating aliases, $ alias 'bye=exit'
+PATH=$PATH:~/EE462 #Or whatever directory you want, this is also temporary
+This only creates an alias for your current shell session. You need to add it to path for permanence between sessions:
+	
+
+There are 3 different types of text streams, sdtin,stdout,stderr 
+
+The pipe oeprator redirects the stdout of the first program to the stdin of the second program
+
+Ctrl+Z pauses a program
+
+bg and fg with the %job number will put program into foreground or background
+
+tr - translate
+sed - stream editor for filtering and transforming text
+
+sed -n '/abc/p' = grep 'abc' file_a
+
+git init	//Create repository in working directory
+git add		//Add files to the staging area
+git status	//See what files are in the staging area
+git commit	//Commits the files in the staging area to the repository
+git push	//push to remote repository
+
+BASH SCRIPTING:
+
+
+
+
+
+
+
+
+
+
+
+
+

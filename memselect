@@ -1,0 +1,58 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+clear
+
+#Build cache of memory sizes, and determine quantity
+cat memparts | tr -s ' ' | cut -f2 --delimiter=' ' | sort -ug | tr -d , > temp
+linecount=$(wc -l temp | cut -f1 --delimiter=' ')
+
+#Create menu table for user selection
+for (( line=1; line<=linecount; line++ ))
+do
+printf "$line) "; sed -n "${line}p" temp
+done
+printf "Enter the desired memory size: "
+
+#Read in user selection, verifying input exists in cache
+read selection
+until [[ $selection == [1-$linecount] ]]; do
+printf "Sorry, requested memory size does not exist. Please try again.\n\nEnter the desired memory size: "
+read selection
+done
+
+#Cache a list of the memory package types that are available for the memory size that the user selected
+size=$(sed -n "${selection}p" temp)
+grep $size memparts | cut -f3 | tr -d ' ' | sort -u > temp
+linecount=$(wc -l temp | cut -f1 --delimiter=' ')
+
+#Create menu table for user selection
+for (( line=1; line<=linecount; line++ ))
+do
+printf "$line) "; sed -n "${line}p" temp
+done
+printf "Enter the desired package type: "
+
+#Read in user selection, verifying input exists in cache
+read selection
+until [[ $selection == [1-$linecount] ]]; do
+printf "Sorry, you input is invalid. Please try again.\n\nEnter the desired package type: "
+read selection
+done
+
+#finds package with lowest per-unit price and returns it to the screen
+package=$(sed -n "${selection}p" temp)
+printf "\n"
+grep $size memparts | grep $package | sort -n -k8 | head -n 1
+
+#Ask user if they would like to continue
+printf "\nWould you like to continue?"
+read choice
+case ${choice} in
+Y|y) ;;
+*) rm temp; clear; break;; #Cleans up
+esac
+
+done
+

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+#-----Uncomment the following code for directory searches
+
+#if [ $# = 2 ] && test -d $2 ;then
+#cd $2
+
+#elif [ $# = 2 ];then
+
+#echo $2 "is not a valid directory. Your current directory contains:"
+
+#fi
+
+if test $# -lt 1;then
+echo "missing command line argument"
+exit
+
+elif [ $1 = "d" ];then
+ls -l  | grep ^d | tr -s ' ' | cut --delimiter=' ' -f 9
+
+elif [ $1 = "x" ];then
+find . -maxdepth 1 -type f -executable | tr -d './'
+
+elif [ $1 = "nx" ];then
+ls -l  | grep ^-........- | tr -s ' ' | cut --delimiter=' ' -f 9
+
+else
+
+echo "Argument not supported"
+
+exit
+
+fi
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+while [ 1 ]
+do
+
+echo "Please enter a number between 1 and 5, if you want to leave, type exit."
+read choice1
+case ${choice1} in
+1) echo "You taint, that's is such a lame number";;
+2) echo "Okay, that's a little better";;
+3) echo "really bruh?";;
+4) echo "By definietion, this is only twice as good as 2";;
+5) echo "Alright then";;
+"exit") break;;
+*) echo "dumbass, read the instructions.";;
+esac
+done

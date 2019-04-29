@@ -1,0 +1,14 @@
+1a: grep 'model name' /proc/info	The single quotes makes sure it treats everything between them as a single string
+
+1b: grep -c remote /etc/services	Result: 73	Result with -w: 45
+
+1c: grep -cwi remote /etc/services	Result: 203	
+
+1d: grep -cv remote /etc/services	Result: 11103
+
+1e: grep -n remote /etc/services	
+
+
+
+2a: grep 'EE[[:digit:]]' spring_ms | cut -f2,6 | uniq
+

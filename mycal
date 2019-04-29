@@ -1,0 +1,51 @@
+#!/bin/bash
+while [ 1 ]
+do
+clear
+#Get first number
+printf "Enter your first number: "
+read num1
+until [[ $num1 =~ -?[0-9]+$ ]]; do
+printf "Sorry, integers only. Please try again.\n\nEnter your first number: "
+read num1
+done
+#Get second number
+printf "Enter your second number: "
+read num2
+until [[ $num2 =~ -?[0-9]+$ ]]; do
+printf "Sorry, integers only. Please try again.\n\nEnter your second number: "
+read num2
+done
+#Check if second digit might produce division error and adjust user menu accordingly
+if ! [[ $num2 == 0* ]]; then
+printf "Please choose an operation:\n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\nChoice: "
+read choice
+until [[ $choice == [1-4] ]]; do
+printf "Invalid choice. Please try again.\nEnter your choice: ";
+read choice 
+done
+
+else
+printf "Please choose an operation:\n1. Addition\n2. Subtraction\n3. Multiplication\nChoice: "
+read choice
+until [[ $choice == [1-3] ]]; do
+printf "Invalid choice. Please try again.\nEnter your choice: ";
+read choice
+done
+fi
+
+case ${choice} in
+1) let result=$num1+$num2; printf "Result: $result\n";;
+2) let result=$num1-$num2; printf "Result: $result\n";;
+3) let result=$num1\*$num2; printf "Result: $result\n";;
+4) let result=$num1/$num2; let remainder=$num1%$num2; printf "Result: $result with a remainder of $remainder\n";;
+esac
+
+printf "\nWould you like to continue?\nY. Yes\nN. No\nChoice: "
+read choice
+case ${choice} in
+Y|y) ;;
+*) clear; break;;
+esac
+done
+

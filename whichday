@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ $# -eq 3 ];then
+date -d "$1 $2 $3" +%A
+else
+echo "Please enter month day year (example: Jan 5 2002) and try again"
+exit
+fi

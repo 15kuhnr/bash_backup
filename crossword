@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "Enter your word, with dashes to represent unknown letters: "
+while [ 1 ]
+do
+read word
+trword="$(echo "${word}" | tr - .)"
+results="$(grep -w "${trword}" /usr/share/dict/words)"
+echo "${results}" 
+echo "Would you like to continue? Y/N"
+read choice
+case ${choice} in
+Y) echo "Enter your word, with dashes to represent unknown letters: ";;
+N) break;;
+esac
+done
+

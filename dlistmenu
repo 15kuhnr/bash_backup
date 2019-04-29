@@ -1,0 +1,22 @@
+#!/bin/bash
+cd
+while [ 1 ]
+do
+clear
+printf "Please select an option:\nd. List all of the directories within the current directory\nx. List all of the ordinary, executable files in the current directory\nnx. List all the ordinary, non-executable files in the directory\nChoice: "
+read choice
+printf "\n"
+case ${choice} in
+d) ls -l  | grep ^d | tr -s ' ' | cut --delimiter=' ' -f 9;;
+x) find . -maxdepth 1 -type f -executable | tr -d './';;
+nx) ls -l  | grep ^-........- | tr -s ' ' | cut --delimiter=' ' -f 9;;
+*) clear; printf "Invalid input, exiting program"; sleep 0.3; printf "."; sleep 0.3; printf "."; sleep 0.3; printf "."; sleep 0.3; printf "\n"; break;;
+esac
+printf "\nWould you like to continute? Y/N\n"
+read choice
+case ${choice} in
+Y|y) ;;
+N|n) clear; printf "Goodbye"; sleep 0.3; printf "."; sleep 0.3; printf "."; sleep 0.3; printf "."; sleep 0.3; printf "\n"; break;;
+*) clear; printf "Invalid input, exiting program"; sleep 0.3; printf "."; sleep 0.3; printf "."; sleep 0.3; printf "."; sleep 0.3; printf "\n"; break;;
+esac
+done

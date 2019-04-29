@@ -1,0 +1,34 @@
+This is a test file for testing grep commands.
+Some lines have ordinary text, some have tabbed columns, some have mixtures
+of tabs and space.  There are embedded control characters and other non-visible
+characters.  For test purposes these have been placed in the file even
+though under normal operations they would not be entered via the keyboard. 
+However, if you are processing data files output from another program, you might
+find such characters.
+The next line is an empty line (no characters)
+
+The next line has just spaces
+                
+The next line has just tabs
+			
+The next line has a mix of spaces and tabs
+    	   			      			        	 	 
+tabbed	columns	of	text	in	this	line
+and	another	line	of	tabbed	columns
+This line has some other control characters and the
+next line has only "invisible" characters:
+
+        		    	     
+And this has a mix of everything	 in     it, including digits: 1,2,3,...25 .
+	
+  // C++ style comment line
+     /*  old C style comment line  */
+/*  comment line  */
+/*  across multiple lines 
+    comment  */
+/*  also across multiple lines
+    comment
+    comment
+    */
+//C++ style comment 
+# new styple of comment

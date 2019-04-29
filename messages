@@ -1,0 +1,23 @@
+Jul 12 17:01:02 cloneme kernel: ACPI: PCI interrupt for device 0000:00:11.0 disabled
+Jul 12 17:01:09 cloneme kernel: Kernel log daemon terminating.
+Oct 28 06:29:49 cloneme kernel: ACPI: PM-Timer IO Port: 0x1008
+Oct 28 06:29:54 cloneme kernel: Kernel log daemon terminating.
+Oct 28 06:31:06 btovm871 kernel:  sda: sda1 sda2 sda3
+Oct 28 06:31:06 btovm871 kernel: sd 0:0:0:0: Attached scsi disk sda
+Oct 28 06:31:10 btovm871 ntpd[2241]: Listening on interface lo, 127.0.0.1#123 Enabled
+Oct 28 06:38:35 btovm871 init: open(/dev/pts/0): No such file or directory
+Oct 28 06:38:35 btovm871 last message repeated 2 times
+Oct 28 06:38:38 btovm871 pcscd: winscard.c:304:SCardConnect() Reader E-Gate 0 0 Not Found
+Oct 28 06:38:38 btovm871 last message repeated 3 times
+Oct 28 11:42:20 gstuff1 ntpd[2241]: synchronized to LOCAL(0), stratum 10
+Oct 28 11:42:20 gstuff1 ntpd[2241]: synchronized to 15.11.13.123, stratum 3
+Oct 28 12:33:31 gstuff1 ntpd[2241]: synchronized to LOCAL(0), stratum 10
+Oct 28 12:50:46 gstuff1 ntpd[2241]: synchronized to 15.11.13.123, stratum 3
+Oct 29 07:55:29 gstuff1 ntpd[2241]: time reset -0.180737 s
+Nov 10 01:12:55 gs123 ntpd[2241]: time reset +0.177479 s
+Nov 10 01:17:17 gs123 ntpd[2241]: synchronized to LOCAL(0), stratum 10
+Nov 10 01:18:49 gs123 ntpd[2241]: synchronized to 15.1.13.13, stratum 3
+Nov 10 13:21:26 gs123 ntpd[2241]: time reset +0.146664 s
+Nov 10 13:25:46 gs123 ntpd[2241]: synchronized to LOCAL(0), stratum 10
+Nov 10 13:26:27 gs123 ntpd[2241]: synchronized to 15.1.13.13, stratum 3
+

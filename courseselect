@@ -1,0 +1,25 @@
+#!/bin/bash
+clear
+printf "Enter course number (e.g. ES100) to search or 0 to exit: "
+read course
+while [ $course != 0 ]
+do
+
+if grep -q ?\t$course $1; then
+printf "\n"
+grep $course $1 | cut -f 2,6,7
+else
+printf "There were no records of $course found."
+fi
+
+
+printf "\nWould you like to continute? Y/N\n"
+read choice
+case ${choice} in
+Y|y) ;;
+N|n) clear; printf "Goodbye"; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "\n"; break;;
+*) clear; printf "Invalid input, exiting program"; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "."; sleep 0.2; printf "\n"; break;;
+esac
+
+done
+

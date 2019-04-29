@@ -1,0 +1,67 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+clear
+
+#Build cache of cities
+cat cities | cut -f2 > temp
+
+#Create menu table for user selection
+linecount=$(wc -l temp | cut -f1 --delimiter=' ') #Determine cache size
+printf "Please select the departure city: \n"
+for (( line=1; line<=linecount; line++ ))
+do
+printf "$line) "; sed -n "${line}p" temp
+done
+
+#Read in user selection, verifying input exists in cache
+read selection
+until [[ $selection -le $linecount && $selection -gt 0 ]]; do
+printf "Sorry, input is invalid. Please try again.\n\nPlease select the departure city: "
+read selection
+done
+
+#Set departure airline code
+depCity=$(sed -n "${selection}p" temp)
+depCityCode=$(grep $depCity cities | cut -f1)
+#printf "\ndep city code: $depCityCode\n" #For debugging purposes only
+
+
+#remove departure city from cache
+sed "/$depCity/d" temp > temp2
+
+#Create second menu table for user selection
+linecount=$(wc -l temp2 | cut -f1 --delimiter=' ')
+printf "Please select the destination city: \n"
+for (( line=1; line<=linecount; line++ ))
+do
+printf "$line) "; sed -n "${line}p" temp2
+done
+
+#Read in user selection, verifying input exists in cache
+read selection
+until [[ $selection -le $linecount && $selection -gt 0 ]]; do
+printf "Sorry, input is invalid. Please try again.\n\nPlease select the destination city: "
+read selection
+done
+
+#Set destination airline code
+destCity=$(sed -n "${selection}p" temp2)
+destCityCode=$(grep $destCity cities | cut -f1)
+#printf "$destCityCode" #For debugging purposes only
+
+#Outputs available flights from the selected cities
+printf "\nAvailable flights:\n"
+grep "$depCityCode" airlines | grep "$destCityCode"
+
+#Ask user if they would like to continue
+printf "\nWould you like to continue?"
+read choice
+case ${choice} in
+Y|y) ;;
+*) rm temp; rm temp2; clear; break;; #Cleans up
+esac
+
+done
+

@@ -1,0 +1,55 @@
+#!/bin/bash
+
+while [ 1 ]
+do
+clear
+
+#count how many fields there are in the csv file
+fields=$(head -1 Potholes_filled_2018.csv | sed 's/[^,]//g' | wc -c) 
+
+for (( i=1; i<=$fields; i++ )); do
+printf "$i) " 
+head -n1 Potholes_filled_2018.csv | cut -f $i --delimiter=','
+done
+printf "Select field to search: "
+
+#Read in user selection, verifying input exists
+read selection
+until [[ $selection -le $fields && $selection -gt 0 ]]; do
+printf "Sorry, input is invalid. Please try again.\n\nPlease select field to search: "
+read selection
+done
+
+selectedField=$(head -n1 Potholes_filled_2018.csv | cut -f $selection --delimiter=',')
+
+#highlights selected field for user. Just for funsies to see if I could
+clear
+for (( i=1; i<=$fields; i++ )); do
+if [[ $i == $selection ]];then
+echo -e '\E[37;44m'"\033[1m$i) $selectedField\033[0m"
+else
+printf "$i) "
+head -n1 Potholes_filled_2018.csv | cut -f $i --delimiter=','
+fi
+
+done
+printf "Please enter $selectedField to search: "
+
+#Read in user selection, verifying input exists
+read selection
+until [[ $selection -le $fields && $selection -gt 0 ]]; do
+printf "Sorry, input is invalid. Please try again.\n\nPlease enter $selectedField to search: "
+read selection
+done
+
+grep $selection Potholes_filled_2018.csv
+
+#Ask user if they would like to continue
+printf "\nWould you like to continue?"
+read choice
+case ${choice} in
+Y|y) ;;
+*) clear; break;; #Cleans up
+esac
+
+done

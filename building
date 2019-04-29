@@ -1,0 +1,5 @@
+#!/bin/bash
+case $# in
+2) awk -F! '$2~/^'$1' / {print $1 " " $3}' $2;;
+*) echo "wrong number of arguments";;
+esac
