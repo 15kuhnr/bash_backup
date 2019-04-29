@@ -1,0 +1,15 @@
+#!/bin/bash
+rm picklejar bigpicklejar
+printf "How many pickles in the pickle jar?\n"
+read pickles
+while [ 1 ]
+do
+picklejar=$(wc -l picklejar)
+bigpicklejar=$(wc -l bigpicklejar)
+biggerpicklejar=$(wc -l biggerpicklejar)
+printf "\n $picklejar $bigpicklejar $biggerpicklejar"
+printf "PICKLE! \n" >> picklejar
+cat picklejar >> bigpicklejar
+cat bigpicklejar >> biggerpicklejar
+let pickles=$pickles+1
+done
