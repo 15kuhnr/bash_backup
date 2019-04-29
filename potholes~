@@ -31,14 +31,14 @@ else
 printf "$i) "
 head -n1 Potholes_filled_2018.csv | cut -f $i --delimiter=','
 fi
-done
 
+done
 printf "Please enter $selectedField to search: "
+
 read search
 
-#Finds matching pattern in selected field, returns the line to output with proper format
-cat Potholes_filled_2018.csv | tr -s [:space:] | sed 's/ ,/,/g' | sed 's/, /,/g' | awk -F, -v selection=$selection -v search=$search '{IGNORECASE = 1} $selection ~ search'
 
+cat Potholes_filled_2018.csv | tr -s [:space:] | sed 's/ ,/,/g' | sed 's/, /,/g' | awk -F, -v selection=$selection -v search=$search '{IGNORECASE = 1} $selection ~ search'
 #Ask user if they would like to continue
 printf "\nWould you like to continue?"
 read choice
