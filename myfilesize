@@ -1,0 +1,12 @@
+#!/bin/bash
+#	Robin Kuhns
+#	0467292
+#	This script will handle any number of inputs by exting with an error message.
+#	If there are no inputs, the script will close saying "Missing file name."
+#	If there is more than one input, the script will only handle the first input.
+
+
+case $# in
+0) printf "Missing file name.\n";;
+*) filetest=$(ls -l | tr -s ' '| cut -f9 --delimiter=' ' | grep $1); if [ $filetest ]; then size=$(ls -lh $1 | cut -f5 --delimiter=' '); printf "The size of $1 is: $size\n"; else echo "No item found."; fi;;
+esac

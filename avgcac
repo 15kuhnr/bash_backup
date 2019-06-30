@@ -1,0 +1,22 @@
+#!/bin/bash
+#	Robin Kuhns
+#	0467292
+
+#count how many fields there are in the file
+fields=$(head -1 $1 | wc -w) 
+
+#count how many lines are in file
+lines=$(wc -l $1 | cut -f1 --delimiter=' ')
+let exams=$lines-1
+
+#calculate and output averages
+for (( i=1; i<=$fields; i++ )); do
+header=$(head -n1 $1 | cut -f$i)
+total=0
+	for (( j=2; j<$lines; j++ )); do
+	num=$(cat $1 | cut -f$i | head -n$j | tail -n1)
+	let total=$total+$num
+	done
+let average=$total/$exams
+printf "$header average = $average\n"
+done

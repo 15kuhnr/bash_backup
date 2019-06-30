@@ -1,0 +1,35 @@
+#!/bin/bash
+#	Robin Kuhns
+#	0467292
+#	I got this code working, so I am not going to try very hard on the roomcheckone part. I am going to work on it just in case this doesn't run properly on your computer. Note that in the file I got from the server, there are 5 sections in room CB195, instead of the 4 that are suggested on the test.
+
+#count how many fields there are in the file
+fields=$(head -1 $1 | wc -w) 
+
+cat $1 | cut -f6 | sort -u > temp
+
+#count how many lines are in file
+lines=$(wc -l temp | cut -f1 --delimiter=' ')
+
+#create menu
+for (( i=1; i<=$lines; i++ )); do
+room=$(head -n$i temp | tail -n1)
+printf "$i) $room\n"
+done
+
+printf "Please select a room: "
+read selection
+until [[ $selection -le $lines && $selection -gt 0 ]]; do
+printf "Sorry, input is invalid. Please try again.\n\nPlease try again: "
+read selection
+done
+
+room=$(head -n$selection temp |tail -n1)
+sections=$(cat $1 | cut -f6 | grep $room | wc -l | cut -f1 --delimiter=' ')
+case $sections in
+1) printf "There is $sections section in $room.\n";;
+*) printf "There are $sections sections in $room.\n";;
+esac
+
+#Clean up, clean up, everybody, everywhere, clean up, clean up, everybody do you your share!
+rm temp

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+##How to read in space separated variable
+#echo "enter first and last name"
+#read fname lname
+#echo $fname
+#echo $lname
+
+##Read all non-hidden files/directories in current directory
+#for filename in *
+#do
+#echo $filename
+#done
+
+filetest=$(ls -l | tr -s ' '| cut -f9 --delimiter=' ' | grep $1);if [ $filetest ];then echo "file exists"; else echo "file does not exist"; fi
+
+
+
+
+
+
+
+
