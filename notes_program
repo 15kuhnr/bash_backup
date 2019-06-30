@@ -1,0 +1,38 @@
+#!/bin/bash
+while [ 1 ]
+do
+clear
+
+#variables set daily on launch
+today="$(date -I)"
+
+printf $today
+
+#make today's notes file
+touch $today
+
+#Create user menu
+printf "Make selection:\n1. New Entry\n2. Backup\nChoice: "
+read selection
+until [[ $selection == [1-2] ]]; do
+printf "Invalid choice. Please try again.\nChoice: ";
+read selection
+done
+
+#execute selection
+case ${selection} in
+1) printf "\nEntry: "; read entry; entrytime="$(date -I'minutes' | cut -f2 --delimiter='T')"; printf "${entrytime} ${entry}\n" >> ${today};;
+2) printf "Backing up"; git add .; git commit -m "Note backup for $today"; git pull; git push;;
+*) exit;;
+esac
+
+#return/exit code
+printf "\nWould you like to continute? Y/N\n"
+read choice
+case ${choice} in
+Y|y) ;;
+N|n) clear; printf "Goodbye"; sleep 0.15; printf "."; sleep 0.15; printf "."; sleep 0.15; printf "."; sleep 0.15; printf "\n"; break;;
+*) clear; printf "Invalid input, exiting program"; sleep 0.15; printf "."; sleep 0.15; printf "."; sleep 0.15; printf "."; sleep 0.15; printf "\n"; break;;
+esac
+
+done
